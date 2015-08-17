@@ -11,14 +11,14 @@ namespace sorting {
 
 template< typename T, std::size_t N >
 struct Selection : public Base<T,N> {
-	Selection() : Base<T,N>("Selection Sort") {}
+	Selection() = default;
 
 	Selection( T max, T min = 0 )
-		: Base<T,N>("Selection Sort", max, min) {
+		: Base<T,N>(max, min) {
 	}
 
 	Selection( typename Base<T,N>::MyArr const& newArr )
-		: Base<T,N>( "Selection Sort", newArr ) {
+		: Base<T,N>( newArr ) {
 	}	
 
 	bool calc(T const=0) override {
@@ -41,6 +41,10 @@ private:
 		if (min != i) {
 			std::swap( arr[i], arr[min] );
 		}
+	}
+
+	constexpr std::string name() const override {
+		return "Selection Sort";
 	}
 
 	using Base<T,N>::arr;

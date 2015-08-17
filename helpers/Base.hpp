@@ -12,24 +12,17 @@ template< typename T, std::size_t N >
 struct Base {
 	typedef std::array< T, N > MyArr;
 
-	Base() = default;
-
-	Base( std::string const& testName )
-		: _name(testName) {
+	Base() {
 		for (std::size_t i=0; i < N; ++i) {
 			arr[i]=i;
 		}
 	}
 
-	Base(
-		std::string const& testName
-		,T max
-		,T min ) {
+	Base( T max, T min ) {
 		helper::GenerateNumbers< T, typename Base< T, N >::MyArr >::generate( arr, min, max );
     }
 
-	Base( std::string const& testName, MyArr const& newArr )
-		: Base(testName) {
+	Base( MyArr const& newArr ) {
 		 arr = newArr;
 	}
 
@@ -47,8 +40,8 @@ struct Base {
 		return false;
 	}
 
-	std::string name() const {
-		return _name;
+	virtual constexpr std::string name() const {
+		return "Unknown";
 	}
 
 protected:
@@ -57,7 +50,6 @@ protected:
 	}
 
 	static MyArr arr;
-	std::string _name;
 };
 
 }
