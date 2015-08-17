@@ -15,7 +15,11 @@ struct Base {
     Base() = default;
 
 	Base( std::string const& testName )
-        : _name(testName) {}
+        : _name(testName) {
+		for (std::size_t i=0; i < N; ++i) {
+			arr[i]=i;
+		}
+    }
 
 	Base( std::string const& testName, MyArr const& newArr )
         : Base(testName) {

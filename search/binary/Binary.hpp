@@ -10,11 +10,7 @@ namespace search {
 
 template< typename T, std::size_t N >
 struct Binary : public Base<T,N> {
-	Binary() : Base<T,N>("Binary search") {
-		for (std::size_t i=0; i < N; ++i) {
-			arr[i]=i;
-		}
-	}
+	Binary() : Base<T,N>("Binary search") {}
 
 	Binary( T max, T min = 1 ) : Base<T,N>("Binary search") {
 		helper::GenerateNumbers< T, typename Base< T, N >::MyArr >::generate( arr, min, max );
