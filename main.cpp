@@ -11,19 +11,6 @@ using namespace subox::algorithms;
 template <typename T, std::size_t N>
 typename Base<T,N>::MyArr Base<T,N>::arr;
 
-void count() {
-	search::Binary< unsigned long, 1000000 > bin;
-	search::Binary< unsigned long, 1000000 > abin;
-
-	std::chrono::steady_clock::time_point start = std::chrono::steady_clock::now();
-//	bin.search( 25789 );
-	std::chrono::steady_clock::time_point end = std::chrono::steady_clock::now();
-
-	std::cout << "Printing took "
-              << std::chrono::duration_cast<std::chrono::nanoseconds>(end - start).count()
-	          << "us.\n";
-}
-
 int main() {
 
     Config<unsigned long> searchConfig;
