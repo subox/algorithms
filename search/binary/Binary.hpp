@@ -13,7 +13,7 @@ struct Binary : public Base<T,N> {
 	Binary() : Base<T,N>("Binary search") {}
 
 	Binary( T max, T min = 0 )
-        : Base<T,N>("Selection Sort", max, min) {
+		: Base<T,N>("Selection Sort", max, min) {
 	}
 
 	Binary( typename Base<T,N>::MyArr const& newArr )

@@ -13,71 +13,71 @@ namespace subox {
 namespace algorithms {
 
 enum class OperType {
-    BinarySearch
-    ,SelectionSort
+	BinarySearch
+	,SelectionSort
 };
 
 template< typename T, std::size_t S >
 struct Executor {
 	Executor( Config<T,S> const& _config )
-        : config(_config) {}
+		: config(_config) {}
 
-    virtual ~Executor(){}
+	virtual ~Executor(){}
 
-    virtual bool push( OperType const operType ) {
-        std::unique_ptr<BaseTempl> item;
-        switch( operType ) {
-            case OperType::BinarySearch:
-	            item.reset( new search::Binary< T, Config<T,S>::SearchArraySize > );
-                break;
-            case OperType::SelectionSort:
-    	        item.reset( new sorting::Selection< T, Config<T,S>::SearchArraySize >(1000) );
-                break;
-            default:
-                return false;
-        }
+	virtual bool push( OperType const operType ) {
+		std::unique_ptr<BaseTempl> item;
+		switch( operType ) {
+			case OperType::BinarySearch:
+				item.reset( new search::Binary< T, Config<T,S>::SearchArraySize > );
+				break;
+			case OperType::SelectionSort:
+				item.reset( new sorting::Selection< T, Config<T,S>::SearchArraySize >(1000) );
+				break;
+			default:
+				return false;
+		}
 
-        tests.push_front( std::move(item) );
-        return true;
-    }
+		tests.push_front( std::move(item) );
+		return true;
+	}
 
-    void execute() {
-        std::chrono::steady_clock::time_point start;
-	    std::chrono::steady_clock::time_point end;
-        for (std::unique_ptr<BaseTempl>& test : tests) {
-            printArray( Print::Before, config.shouldPrint, test );
-        	start = std::chrono::steady_clock::now();
-            test->calc();
-	        end = std::chrono::steady_clock::now();
-            printArray( Print::After, config.shouldPrint, test );
-            printCalcLast( start, end, test->name() );
-        }
-    }
+	void execute() {
+		std::chrono::steady_clock::time_point start;
+		std::chrono::steady_clock::time_point end;
+		for (std::unique_ptr<BaseTempl>& test : tests) {
+			printArray( Print::Before, config.shouldPrint, test );
+			start = std::chrono::steady_clock::now();
+			test->calc();
+			end = std::chrono::steady_clock::now();
+			printArray( Print::After, config.shouldPrint, test );
+			printCalcLast( start, end, test->name() );
+		}
+	}
 
 protected:
-    typedef Base<T, Config<T,S>::SearchArraySize> BaseTempl;
-    Config<T,S> config;
-    std::forward_list<std::unique_ptr<BaseTempl>> tests;
+	typedef Base<T, Config<T,S>::SearchArraySize> BaseTempl;
+	Config<T,S> config;
+	std::forward_list<std::unique_ptr<BaseTempl>> tests;
 
 private:
-    void printCalcLast(
-            std::chrono::steady_clock::time_point const& start
-            ,std::chrono::steady_clock::time_point const& end
-            ,std::string const& testName ) const {
-	    std::cout << testName << " took "
-              << std::chrono::duration_cast<std::chrono::microseconds>(end - start).count()
-	          << "us.\n";
-    }
+	void printCalcLast(
+			std::chrono::steady_clock::time_point const& start
+			,std::chrono::steady_clock::time_point const& end
+			,std::string const& testName ) const {
+		std::cout << testName << " took "
+				<< std::chrono::duration_cast<std::chrono::microseconds>(end - start).count()
+				<< "us.\n";
+	}
 
-    void printArray(
-            Print p,
-            Print const isDisabled
-            ,std::unique_ptr<BaseTempl>& item ) {
-        if (isDisabled == p
-            ||isDisabled == Print::Both) {
-           item->print(); 
-        }
-    }
+	void printArray(
+			Print p,
+			Print const isDisabled
+			,std::unique_ptr<BaseTempl>& item ) {
+		if (isDisabled == p
+			||isDisabled == Print::Both) {
+			item->print(); 
+		}
+	}
 };
 
 }

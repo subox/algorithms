@@ -13,36 +13,35 @@ template< typename T, std::size_t N >
 struct Selection : public Base<T,N> {
 	Selection() : Base<T,N>("Selection Sort") {}
 
-	Selection( T max, T min = 1 )
-        : Base<T,N>("Selection Sort", max, min) {
+	Selection( T max, T min = 0 )
+		: Base<T,N>("Selection Sort", max, min) {
 	}
 
 	Selection( typename Base<T,N>::MyArr const& newArr )
 		: Base<T,N>( "Selection Sort", newArr ) {
-	}
-
+	}	
 
 	bool calc(T const=0) override {
-        std::size_t min = 0;
-        for (std::size_t i = 0; i < size(); ++i) {
-            min = i;
-            for (std::size_t j = i + 1; j < size(); ++j) {
-                if (arr[min] > arr[ j ]) {
-                    min = j;
-                }
-            }
-            swapIfDifferent( i, min );
-        }
+		std::size_t min = 0;
+		for (std::size_t i = 0; i < size(); ++i) {
+			min = i;
+			for (std::size_t j = i + 1; j < size(); ++j) {
+				if (arr[min] > arr[ j ]) {
+					min = j;
+				}
+			}
+			swapIfDifferent( i, min );
+		}
 
-        return true;
+		return true;
 	}
 
 private:
-    void swapIfDifferent( std::size_t const i, std::size_t const min ) {
-        if (min != i) {
-               std::swap( arr[i], arr[min] );
-        }
-    }
+	void swapIfDifferent( std::size_t const i, std::size_t const min ) {
+		if (min != i) {
+			std::swap( arr[i], arr[min] );
+		}
+	}
 
 	using Base<T,N>::arr;
 	using Base<T,N>::size;

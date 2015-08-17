@@ -12,44 +12,44 @@ template< typename T, std::size_t N >
 struct Base {
 	typedef std::array< T, N > MyArr;
 
-    Base() = default;
+	Base() = default;
 
 	Base( std::string const& testName )
-        : _name(testName) {
+		: _name(testName) {
 		for (std::size_t i=0; i < N; ++i) {
 			arr[i]=i;
 		}
-    }
+	}
 
-    Base(
-        std::string const& testName
-        ,T max
-        ,T min ) {
+	Base(
+		std::string const& testName
+		,T max
+		,T min ) {
 		helper::GenerateNumbers< T, typename Base< T, N >::MyArr >::generate( arr, min, max );
     }
 
 	Base( std::string const& testName, MyArr const& newArr )
-        : Base(testName) {
+		: Base(testName) {
 		 arr = newArr;
 	}
 
-    virtual ~Base(){}
+	virtual ~Base(){}
 
-    void print() const {
-        for (T i : arr) {
-            std::cout << i << " ";
-        }
-        std::cout << std::endl;
-    }
+	void print() const {
+		for (T i : arr) {
+			std::cout << i << " ";
+		}
+		std::cout << std::endl;
+	}
 
-    virtual bool calc(T const=1) {
-        std::cerr << "Error: Not a sort type" << std::endl;
-        return false;
-    }
+	virtual bool calc(T const=1) {
+		std::cerr << "Error: Not a sort type" << std::endl;
+		return false;
+	}
 
-    std::string name() const {
-        return _name;
-    }
+	std::string name() const {
+		return _name;
+	}
 
 protected:
 	constexpr std::size_t size() const {
@@ -57,7 +57,7 @@ protected:
 	}
 
 	static MyArr arr;
-    std::string _name;
+	std::string _name;
 };
 
 }
