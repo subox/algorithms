@@ -21,6 +21,13 @@ struct Base {
 		}
     }
 
+    Base(
+        std::string const& testName
+        ,T max
+        ,T min ) {
+		helper::GenerateNumbers< T, typename Base< T, N >::MyArr >::generate( arr, min, max );
+    }
+
 	Base( std::string const& testName, MyArr const& newArr )
         : Base(testName) {
 		 arr = newArr;

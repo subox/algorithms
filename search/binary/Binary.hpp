@@ -12,8 +12,8 @@ template< typename T, std::size_t N >
 struct Binary : public Base<T,N> {
 	Binary() : Base<T,N>("Binary search") {}
 
-	Binary( T max, T min = 1 ) : Base<T,N>("Binary search") {
-		helper::GenerateNumbers< T, typename Base< T, N >::MyArr >::generate( arr, min, max );
+	Binary( T max, T min = 0 )
+        : Base<T,N>("Selection Sort", max, min) {
 	}
 
 	Binary( typename Base<T,N>::MyArr const& newArr )

@@ -13,8 +13,8 @@ template< typename T, std::size_t N >
 struct Selection : public Base<T,N> {
 	Selection() : Base<T,N>("Selection Sort") {}
 
-	Selection( T max, T min = 1 ) : Base<T,N>("Selection Sort") {
-		helper::GenerateNumbers< T, typename Base< T, N >::MyArr >::generate( arr, min, max );
+	Selection( T max, T min = 1 )
+        : Base<T,N>("Selection Sort", max, min) {
 	}
 
 	Selection( typename Base<T,N>::MyArr const& newArr )
