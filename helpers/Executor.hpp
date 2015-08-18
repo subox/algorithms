@@ -15,6 +15,7 @@ namespace algorithms {
 enum class OperType {
 	BinarySearch
 	,SelectionSort
+	,InsertionSort
 };
 
 template< typename T, std::size_t S >

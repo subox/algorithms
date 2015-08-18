@@ -2,6 +2,7 @@
 #define __ALGORITHMS_SORT_EXECUTOR_HPP__
 
 #include "Executor.hpp"
+#include "../sort/insertion/Insertion.hpp"
 
 namespace subox {
 namespace algorithms {
@@ -16,6 +17,9 @@ struct SortExecutor : public Executor<T,S> {
 		switch( operType ) {
 			case OperType::SelectionSort:
 				item.reset( new sorting::Selection< T, Config<T,S>::SearchArraySize >(1000) );
+				break;
+			case OperType::InsertionSort:
+				item.reset( new sorting::Insertion< T, Config<T,S>::SearchArraySize >(1000) );
 				break;
 			default:
 				return false;

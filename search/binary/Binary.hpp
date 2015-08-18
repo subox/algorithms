@@ -1,7 +1,6 @@
 #ifndef __ALGORITHMS_SEARCH_BINARY_HPP__
 #define __ALGORITHMS_SEARCH_BINARY_HPP__
 
-#include "../../helpers/GenerateNumbers.hpp"
 #include "../../helpers/Base.hpp"
 
 namespace subox {

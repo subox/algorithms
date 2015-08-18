@@ -1,6 +1,7 @@
 #ifndef __ALGORITHMS_BASE_HPP__
 #define __ALGORITHMS_BASE_HPP__
 
+#include "GenerateNumbers.hpp"
 #include <array>
 #include <iostream>
 #include <string>
@@ -49,7 +50,7 @@ protected:
 		return N;
 	}
 
-	static MyArr arr;
+	MyArr arr;
 };
 
 }

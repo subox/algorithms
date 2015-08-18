@@ -1,7 +1,6 @@
 #ifndef __ALGORITHMS_SORTING_SELECTION_HPP__
 #define __ALGORITHMS_SORTING_SELECTION_HPP__
 
-#include "../../helpers/GenerateNumbers.hpp"
 #include "../../helpers/Base.hpp"
 #include <algorithm>
 
