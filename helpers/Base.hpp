@@ -13,15 +13,21 @@ template< typename T, std::size_t N >
 struct Base {
 	typedef std::array< T, N > MyArr;
 
-	Base() {
-		for (std::size_t i=0; i < N; ++i) {
-			arr[i]=i;
+	Base( bool const reverse = false ) {
+		if (false == reverse) {
+			for (std::size_t i=0; i < N; ++i) {
+				arr[i]=i;
+			}
+		} else {
+			for (std::size_t i=0; i < N; ++i) {
+				arr[N - 1 - i]=i;
+			}
 		}
 	}
 
 	Base( T max, T min ) {
 		helper::GenerateNumbers< T, typename Base< T, N >::MyArr >::generate( arr, min, max );
-    }
+	}
 
 	Base( MyArr const& newArr ) {
 		 arr = newArr;

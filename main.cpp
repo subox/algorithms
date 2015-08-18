@@ -18,6 +18,7 @@ int main() {
 	constexpr static std::size_t SortArrSize = 20000;
 	Config<unsigned long, SortArrSize> sortConfig;
 //	sortConfig.shouldPrint = Print::Both;
+//	sortConfig.arrasSort = ArraySort::Descend;
 	SortExecutor<unsigned long, SortArrSize> sortExec(sortConfig);
 	sortExec.push( OperType::SelectionSort );
 	sortExec.push( OperType::InsertionSort );

@@ -11,7 +11,7 @@ template< typename T, std::size_t N >
 struct Binary : public Base<T,N> {
 	Binary() = default;
 
-	Binary( T max, T min = 0 )
+	Binary( T max, T min )
 		: Base<T,N>(max, min) {
 	}
 

@@ -3,6 +3,7 @@
 
 #include "Executor.hpp"
 #include "../sort/insertion/Insertion.hpp"
+#include "Config.hpp"
 
 namespace subox {
 namespace algorithms {
@@ -16,10 +17,10 @@ struct SortExecutor : public Executor<T,S> {
 		std::unique_ptr<BaseTempl> item;
 		switch( operType ) {
 			case OperType::SelectionSort:
-				item.reset( new sorting::Selection< T, Config<T,S>::SearchArraySize >(1000) );
+				item.reset( selectSortOrder<sorting::Selection< T, Config<T,S>::SearchArraySize >>() );
 				break;
 			case OperType::InsertionSort:
-				item.reset( new sorting::Insertion< T, Config<T,S>::SearchArraySize >(1000) );
+				item.reset( selectSortOrder<sorting::Insertion< T, Config<T,S>::SearchArraySize >>() );
 				break;
 			default:
 				return false;
@@ -29,8 +30,31 @@ struct SortExecutor : public Executor<T,S> {
 		return true;
 	}
 
+private:
 	using typename Executor<T,S>::BaseTempl;
 	using Executor<T,S>::tests;
+	using Executor<T,S>::config;
+
+	template< typename SORT >
+	BaseTempl* selectSortOrder() {
+		BaseTempl* item = nullptr;
+		switch ( config.arrasSort ) {
+			case ArraySort::Random:
+				item = new SORT(1000,0);
+				break;
+			case ArraySort::Ascend:
+				item = new SORT();
+				break;
+			case ArraySort::Descend:
+				item = new SORT(true);
+				break;
+			default:
+				item = new SORT(1000,0);
+				break;
+		}
+
+		return item;
+	}
 };
 
 }

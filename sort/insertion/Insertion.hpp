@@ -10,9 +10,10 @@ namespace sorting {
 
 template< typename T, std::size_t N >
 struct Insertion : public Base<T,N> {
-	Insertion() = default; 
+	Insertion( bool const reverse = false )
+		: Base<T,N>(reverse){}
 
-	Insertion( T max, T min = 0 )
+	Insertion( T max, T min )
 		: Base<T,N>(max, min) {
 	}
 
@@ -37,19 +38,12 @@ struct Insertion : public Base<T,N> {
 	}
 
 private:
-	void swapIfDifferent( std::size_t const i, std::size_t const min ) {
-		if (min != i) {
-			std::swap( arr[i], arr[min] );
-		}
-	}
-
 	constexpr std::string name() const override {
 		return "Insertion Sort";
 	}
 
 	using Base<T,N>::arr;
 	using Base<T,N>::size;
-	using Base<T,N>::print;
 };
 
 

@@ -10,9 +10,10 @@ namespace sorting {
 
 template< typename T, std::size_t N >
 struct Selection : public Base<T,N> {
-	Selection() = default;
+	Selection( bool const reverse = false )
+		: Base<T,N>(reverse){}
 
-	Selection( T max, T min = 0 )
+	Selection( T max, T min )
 		: Base<T,N>(max, min) {
 	}
 

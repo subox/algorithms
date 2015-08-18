@@ -32,7 +32,7 @@ struct Executor {
 				item.reset( new search::Binary< T, Config<T,S>::SearchArraySize > );
 				break;
 			case OperType::SelectionSort:
-				item.reset( new sorting::Selection< T, Config<T,S>::SearchArraySize >(1000) );
+				item.reset( new sorting::Selection< T, Config<T,S>::SearchArraySize >(1000,0) );
 				break;
 			default:
 				return false;
