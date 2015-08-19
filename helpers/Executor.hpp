@@ -16,6 +16,7 @@ enum class OperType {
 	BinarySearch
 	,SelectionSort
 	,InsertionSort
+	,ShellSort
 };
 
 template< typename T, std::size_t S >

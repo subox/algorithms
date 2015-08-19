@@ -3,6 +3,8 @@
 
 #include "Executor.hpp"
 #include "../sort/insertion/Insertion.hpp"
+#include "../sort/selection/Selection.hpp"
+#include "../sort/shell/Shell.hpp"
 #include "Config.hpp"
 
 namespace subox {
@@ -21,6 +23,9 @@ struct SortExecutor : public Executor<T,S> {
 				break;
 			case OperType::InsertionSort:
 				item.reset( selectSortOrder<sorting::Insertion< T, Config<T,S>::SearchArraySize >>() );
+				break;
+			case OperType::ShellSort:
+				item.reset( selectSortOrder<sorting::Shell< T, Config<T,S>::SearchArraySize >>() );
 				break;
 			default:
 				return false;

@@ -17,11 +17,12 @@ int main() {
 
 	constexpr static std::size_t SortArrSize = 20000;
 	Config<unsigned long, SortArrSize> sortConfig;
-//	sortConfig.shouldPrint = Print::Both;
+	//sortConfig.shouldPrint = Print::Both;
 //	sortConfig.arrasSort = ArraySort::Descend;
 	SortExecutor<unsigned long, SortArrSize> sortExec(sortConfig);
 	sortExec.push( OperType::SelectionSort );
 	sortExec.push( OperType::InsertionSort );
+	sortExec.push( OperType::ShellSort );
 	sortExec.execute();
 
 	//std::array< unsigned, 10 > array = {1,3,6,8,9,10, 12, 17, 19, 20};
