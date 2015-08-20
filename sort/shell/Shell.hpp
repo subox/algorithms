@@ -43,6 +43,7 @@ struct Shell : public Base<T,N> {
 	}
 
 private:
+	// TODO: Change it to metafunction
 	std::size_t getHmax() const {
 		std::size_t h = 1;
 		while (h < size() / 3) {
@@ -56,7 +57,6 @@ private:
 	}
 
 	using Base<T,N>::arr;
-	using Base<T,N>::print;
 	using Base<T,N>::size;
 };
 

@@ -4,7 +4,10 @@
 #include "Config.hpp"
 #include "Base.hpp"
 #include "../sort/selection/Selection.hpp"
+#include "../sort/insertion/Insertion.hpp"
+#include "../sort/shell/Shell.hpp"
 #include "../search/binary/Binary.hpp"
+#include "../shuffle/knuth/Knuth.hpp"
 #include <forward_list>
 #include <memory>
 #include <chrono>
@@ -17,6 +20,7 @@ enum class OperType {
 	,SelectionSort
 	,InsertionSort
 	,ShellSort
+	,KnuthShuffle
 };
 
 template< typename T, std::size_t S >
@@ -34,6 +38,15 @@ struct Executor {
 				break;
 			case OperType::SelectionSort:
 				item.reset( new sorting::Selection< T, Config<T,S>::SearchArraySize >(1000,0) );
+				break;
+			case OperType::InsertionSort:
+				item.reset( new sorting::Insertion< T, Config<T,S>::SearchArraySize >(1000,0) );
+				break;
+			case OperType::ShellSort:
+				item.reset( new sorting::Shell< T, Config<T,S>::SearchArraySize >(1000,0) );
+				break;
+			case OperType::KnuthShuffle:
+				item.reset( new shuffle::Knuth< T, Config<T,S>::SearchArraySize >() );
 				break;
 			default:
 				return false;
