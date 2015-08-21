@@ -23,7 +23,7 @@ template< typename T, std::size_t S = 200000000L >
 struct Config {
 	std::vector< T > searchNumbers;
 	Print shouldPrint = Print::Disable;
-	ArraySort arrasSort = ArraySort::Random;
+	ArraySort arraySort = ArraySort::Random;
 	unsigned executions = 1;
 	bool sameArrayValues = true;
 	unsigned short maxThreads = 1;

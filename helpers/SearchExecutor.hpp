@@ -21,12 +21,11 @@ struct SearchExecutor : public Executor<T,S> {
 				return false;
 		}
 
-		tests.push_front( std::move(item) );
+		this->tests.push_front( std::move(item) );
 		return true;
 	}
 
 	using typename Executor<T,S>::BaseTempl;
-	using Executor<T,S>::tests;
 };
 
 }

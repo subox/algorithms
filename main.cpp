@@ -19,17 +19,18 @@ int main() {
 	constexpr static std::size_t SortArrSize = 20000;
 	Config<unsigned long, SortArrSize> sortConfig;
 	//sortConfig.shouldPrint = Print::Both;
-//	sortConfig.arrasSort = ArraySort::Descend;
+//	sortConfig.arraySort = ArraySort::Descend;
 	SortExecutor<unsigned long, SortArrSize> sortExec(sortConfig);
 	sortExec.push( OperType::SelectionSort );
 	sortExec.push( OperType::InsertionSort );
 	sortExec.push( OperType::ShellSort );
-//	sortExec.execute();
+	sortExec.execute();
 	}
 	{
 	constexpr static std::size_t SortArrSize = 100;
 	Config<int, SortArrSize> config;
-	config.shouldPrint = Print::Both;
+//	config.shouldPrint = Print::Both;
+	config.arraySort = ArraySort::Descend;
 	Executor<int, SortArrSize> exec(config);
 	exec.push( OperType::KnuthShuffle );
 	exec.execute();

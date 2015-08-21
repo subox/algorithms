@@ -23,10 +23,10 @@ struct Selection : public Base<T,N> {
 
 	bool calc(T const=0) override {
 		std::size_t min = 0;
-		for (std::size_t i = 0; i < size(); ++i) {
+		for (std::size_t i = 0; i < this->size(); ++i) {
 			min = i;
-			for (std::size_t j = i + 1; j < size(); ++j) {
-				if (arr[min] > arr[ j ]) {
+			for (std::size_t j = i + 1; j < this->size(); ++j) {
+				if (this->arr[min] > this->arr[ j ]) {
 					min = j;
 				}
 			}
@@ -39,16 +39,13 @@ struct Selection : public Base<T,N> {
 private:
 	void swapIfDifferent( std::size_t const i, std::size_t const min ) {
 		if (min != i) {
-			std::swap( arr[i], arr[min] );
+			std::swap( this->arr[i], this->arr[min] );
 		}
 	}
 
 	constexpr std::string name() const override {
 		return "Selection Sort";
 	}
-
-	using Base<T,N>::arr;
-	using Base<T,N>::size;
 };
 
 
