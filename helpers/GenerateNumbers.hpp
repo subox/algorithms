@@ -9,7 +9,7 @@ namespace helper {
 
 template< typename T, typename ARR >
 struct GenerateNumbers {
-	static T generate( ARR& arr, T const min, T const max ) {
+	static void generate( ARR& arr, T const min, T const max ) {
 		std::random_device rd;
 		std::mt19937 mt(rd());
 		std::uniform_int_distribution< T > dist(min, max);
