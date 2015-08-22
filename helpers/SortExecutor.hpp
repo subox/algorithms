@@ -2,9 +2,9 @@
 #define __ALGORITHMS_SORT_EXECUTOR_HPP__
 
 #include "Executor.hpp"
-#include "../sort/insertion/Insertion.hpp"
-#include "../sort/selection/Selection.hpp"
-#include "../sort/shell/Shell.hpp"
+#include "sort/insertion/Insertion.hpp"
+#include "sort/selection/Selection.hpp"
+#include "sort/shell/Shell.hpp"
 #include "Config.hpp"
 
 namespace subox {

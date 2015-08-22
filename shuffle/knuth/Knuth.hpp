@@ -1,7 +1,7 @@
 #ifndef __ALGORITHMS_SHUFFLE_KNUTH_HPP__
 #define __ALGORITHMS_SHUFFLE_KNUTH_HPP__
 
-#include "../../helpers/Base.hpp"
+#include "helpers/Base.hpp"
 #include <algorithm>
 #include <random>
 

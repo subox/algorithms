@@ -1,7 +1,7 @@
 #ifndef __ALGORITHMS_SORTING_SHELL_HPP__
 #define __ALGORITHMS_SORTING_SHELL_HPP__ 
 
-#include "../../helpers/Base.hpp"
+#include "helpers/Base.hpp"
 #include <algorithm>
 
 namespace subox {

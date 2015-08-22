@@ -3,11 +3,11 @@
 
 #include "Config.hpp"
 #include "Base.hpp"
-#include "../sort/selection/Selection.hpp"
-#include "../sort/insertion/Insertion.hpp"
-#include "../sort/shell/Shell.hpp"
-#include "../search/binary/Binary.hpp"
-#include "../shuffle/knuth/Knuth.hpp"
+#include "sort/selection/Selection.hpp"
+#include "sort/insertion/Insertion.hpp"
+#include "sort/shell/Shell.hpp"
+#include "search/binary/Binary.hpp"
+#include "shuffle/knuth/Knuth.hpp"
 #include <forward_list>
 #include <memory>
 #include <chrono>

@@ -1,7 +1,7 @@
 #ifndef __ALGORITHMS_SEARCH_BINARY_HPP__
 #define __ALGORITHMS_SEARCH_BINARY_HPP__
 
-#include "../../helpers/Base.hpp"
+#include "helpers/Base.hpp"
 
 namespace subox {
 namespace algorithms {
@@ -9,7 +9,8 @@ namespace search {
 
 template< typename T, std::size_t N >
 struct Binary : public Base<T,N> {
-	Binary() = default;
+	Binary( bool const reverse = false )
+		: Base<T,N>(reverse){}
 
 	Binary( T max, T min )
 		: Base<T,N>(max, min) {
@@ -19,6 +20,7 @@ struct Binary : public Base<T,N> {
 		: Base<T,N>(newArr ) {
 	}
 
+	// TODO: protect when array is unsorted
 	bool calc( T const key ) override {
 		unsigned lo = 0,
 				hi = size() - 1,
