@@ -5,6 +5,7 @@
 #include "sort/insertion/Insertion.hpp"
 #include "sort/selection/Selection.hpp"
 #include "sort/shell/Shell.hpp"
+#include "sort/merge/Merge.hpp"
 #include "Config.hpp"
 
 namespace subox {
@@ -26,6 +27,9 @@ struct SortExecutor : public Executor<T,S> {
 				break;
 			case OperType::ShellSort:
 				item.reset( this->template selectSortOrder<sorting::Shell< T, Config<T,S>::SearchArraySize >>() );
+				break;
+			case OperType::MergeSort:
+				item.reset( this->template selectSortOrder<sorting::Merge< T, Config<T,S>::SearchArraySize >>() );
 				break;
 			default:
 				return false;
