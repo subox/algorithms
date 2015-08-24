@@ -16,7 +16,7 @@ int main() {
 	searchExec.push( OperType::BinarySearch );
 	searchExec.execute();
 	{
-	constexpr static std::size_t SortArrSize =200000;// 20000;
+	constexpr static std::size_t SortArrSize =20000;// 20000;
 	Config<unsigned long, SortArrSize> sortConfig;
 //	sortConfig.shouldPrint = Print::Both;
 //	sortConfig.arraySort = ArraySort::Descend;

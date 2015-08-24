@@ -15,7 +15,7 @@ struct SearchExecutor : public Executor<T,S> {
 		std::unique_ptr<BaseTempl> item;
 		switch( operType ) {
 			case OperType::BinarySearch:
-				item.reset( new search::Binary< T, Config<T,S>::SearchArraySize > );
+				item.reset( new search::Binary< T >(Config<T,S>::SearchArraySize) );
 				break;
 			default:
 				return false;

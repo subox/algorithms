@@ -8,17 +8,17 @@ namespace subox {
 namespace algorithms {
 namespace sorting {
 
-template< typename T, std::size_t N >
-struct Insertion : public Base<T,N> {
-	Insertion( bool const reverse = false )
-		: Base<T,N>(reverse){}
+template< typename T >
+struct Insertion : public Base<T> {
+	Insertion( std::size_t capacity, bool const reverse = false )
+		: Base<T>(capacity, reverse){}
 
-	Insertion( T max, T min )
-		: Base<T,N>(max, min) {
+	Insertion( std::size_t capacity, T max, T min )
+		: Base<T>(capacity, max, min) {
 	}
 
-	Insertion( typename Base<T,N>::MyArr const& newArr )
-		: Base<T,N>(newArr ) {
+	Insertion( typename Base<T>::MyArr const& newArr )
+		: Base<T>(newArr ) {
 	}	
 
 	bool calc(T const=0) override {
@@ -42,8 +42,8 @@ private:
 		return "Insertion Sort";
 	}
 
-	using Base<T,N>::arr;
-	using Base<T,N>::size;
+	using Base<T>::arr;
+	using Base<T>::size;
 };
 
 

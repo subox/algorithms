@@ -20,16 +20,16 @@ struct SortExecutor : public Executor<T,S> {
 		std::unique_ptr<BaseTempl> item;
 		switch( operType ) {
 			case OperType::SelectionSort:
-				item.reset( this->template selectSortOrder<sorting::Selection< T, Config<T,S>::SearchArraySize >>() );
+				item.reset( this->template selectSortOrder<sorting::Selection< T >>() );
 				break;
 			case OperType::InsertionSort:
-				item.reset( this->template selectSortOrder<sorting::Insertion< T, Config<T,S>::SearchArraySize >>() );
+				item.reset( this->template selectSortOrder<sorting::Insertion< T >>() );
 				break;
 			case OperType::ShellSort:
-				item.reset( this->template selectSortOrder<sorting::Shell< T, Config<T,S>::SearchArraySize >>() );
+				item.reset( this->template selectSortOrder<sorting::Shell< T >>() );
 				break;
 			case OperType::MergeSort:
-				item.reset( this->template selectSortOrder<sorting::Merge< T, Config<T,S>::SearchArraySize >>() );
+				item.reset( this->template selectSortOrder<sorting::Merge< T >>() );
 				break;
 			default:
 				return false;

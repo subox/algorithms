@@ -2,31 +2,34 @@
 #define __ALGORITHMS_BASE_HPP__
 
 #include "GenerateNumbers.hpp"
-#include <array>
+#include <vector>
 #include <iostream>
 #include <string>
 
 namespace subox {
 namespace algorithms {
 
-template< typename T, std::size_t N >
+template< typename T >
 struct Base {
-	typedef std::array< T, N > MyArr;
+	typedef std::vector< T > MyArr;
 
-	Base( bool const reverse = false ) {
+	Base( std::size_t capacity = 0, bool const reverse = false ) {
+		arr.reserve( capacity );
 		if (false == reverse) {
-			for (std::size_t i=0; i < N; ++i) {
-				arr[i]=i;
+			for (std::size_t i=0; i < capacity; ++i) {
+				arr.push_back(i);
 			}
 		} else {
-			for (std::size_t i=0; i < N; ++i) {
-				arr[N - 1 - i]=i;
+			// TODO: Check it
+			for (std::size_t i=0; i < capacity; ++i) {
+				arr.push_back(i);
 			}
 		}
 	}
 
-	Base( T max, T min ) {
-		helper::GenerateNumbers< T, typename Base< T, N >::MyArr >::generate( arr, min, max );
+	Base( std::size_t capacity, T max, T min ) {
+		arr.reserve( capacity );
+		helper::GenerateNumbers< T, typename Base< T >::MyArr >::generate( arr, capacity, min, max );
 	}
 
 	Base( MyArr const& newArr ) {
@@ -53,7 +56,7 @@ struct Base {
 
 protected:
 	constexpr std::size_t size() const {
-		return N;
+		return arr.size();
 	}
 
 	MyArr arr;

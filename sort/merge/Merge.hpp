@@ -8,17 +8,17 @@ namespace subox {
 namespace algorithms {
 namespace sorting {
 
-template< typename T, std::size_t N >
-struct Merge : public Base<T,N> {
-	Merge( bool const reverse = false )
-		: Base<T,N>(reverse){}
+template< typename T >
+struct Merge : public Base<T> {
+	Merge( std::size_t capacity = 0, bool const reverse = false )
+		: Base<T>(capacity, reverse){}
 
-	Merge( T max, T min )
-		: Base<T,N>(max, min) {
+	Merge( std::size_t capacity, T max, T min )
+		: Base<T>(capacity, max, min) {
 	}
 
-	Merge( typename Base<T,N>::MyArr const& newArr )
-		: Base<T,N>( newArr ) {
+	Merge( typename Base<T>::MyArr const& newArr )
+		: Base<T>( newArr ) {
 	}	
 
 	bool calc(T const=0) override {
@@ -71,7 +71,7 @@ private:
 		return "Merge Sort";
 	}
 
-	typename Base<T,N>::MyArr auxiliaryArr;
+	typename Base<T>::MyArr auxiliaryArr;
 };
 
 

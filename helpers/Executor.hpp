@@ -36,22 +36,22 @@ struct Executor {
 		std::unique_ptr<BaseTempl> item;
 		switch( operType ) {
 			case OperType::BinarySearch:
-				item.reset( new search::Binary< T, Config<T,S>::SearchArraySize > );
+				item.reset( new search::Binary< T >(Config<T,S>::SearchArraySize) );
 				break;
 			case OperType::SelectionSort:
-				item.reset( this->template selectSortOrder<sorting::Selection< T, Config<T,S>::SearchArraySize >>() );
+				item.reset( this->template selectSortOrder<sorting::Selection< T >>() );
 				break;
 			case OperType::InsertionSort:
-				item.reset( this->template selectSortOrder<sorting::Insertion< T, Config<T,S>::SearchArraySize >>() );
+				item.reset( this->template selectSortOrder<sorting::Insertion< T >>() );
 				break;
 			case OperType::ShellSort:
-				item.reset( this->template selectSortOrder<sorting::Shell< T, Config<T,S>::SearchArraySize >>() );
+				item.reset( this->template selectSortOrder<sorting::Shell< T >>() );
 				break;
 			case OperType::MergeSort:
-				item.reset( this->template selectSortOrder<sorting::Merge< T, Config<T,S>::SearchArraySize >>() );
+				item.reset( this->template selectSortOrder<sorting::Merge< T >>() );
 				break;
 			case OperType::KnuthShuffle:
-				item.reset( this->template selectSortOrder<shuffle::Knuth< T, Config<T,S>::SearchArraySize >>() );
+				item.reset( this->template selectSortOrder<shuffle::Knuth< T >>() );
 				break;
 			default:
 				return false;
@@ -75,7 +75,7 @@ struct Executor {
 	}
 
 protected:
-	typedef Base<T, Config<T,S>::SearchArraySize> BaseTempl;
+	typedef Base<T> BaseTempl;
 	Config<T,S> config;
 	std::forward_list<std::unique_ptr<BaseTempl>> tests;
 
@@ -84,16 +84,16 @@ protected:
 		BaseTempl* item = nullptr;
 		switch ( config.arraySort ) {
 			case ArraySort::Random:
-				item = new SORT(1000,0);
+				item = new SORT(Config<T,S>::SearchArraySize, 1000,0);
 				break;
 			case ArraySort::Ascend:
-				item = new SORT();
+				item = new SORT(Config<T,S>::SearchArraySize);
 				break;
 			case ArraySort::Descend:
-				item = new SORT(true);
+				item = new SORT(Config<T,S>::SearchArraySize, true);
 				break;
 			default:
-				item = new SORT(1000,0);
+				item = new SORT(Config<T,S>::SearchArraySize, 1000,0);
 				break;
 		}
 

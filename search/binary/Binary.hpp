@@ -7,17 +7,17 @@ namespace subox {
 namespace algorithms {
 namespace search {
 
-template< typename T, std::size_t N >
-struct Binary : public Base<T,N> {
-	Binary( bool const reverse = false )
-		: Base<T,N>(reverse){}
+template< typename T >
+struct Binary : public Base<T> {
+	Binary( std::size_t capacity = 0, bool const reverse = false )
+		: Base<T>(capacity, reverse){}
 
-	Binary( T max, T min )
-		: Base<T,N>(max, min) {
+	Binary( std::size_t capacity, T max, T min )
+		: Base<T>(capacity, max, min) {
 	}
 
-	Binary( typename Base<T,N>::MyArr const& newArr )
-		: Base<T,N>(newArr ) {
+	Binary( typename Base<T>::MyArr const& newArr )
+		: Base<T>(newArr ) {
 	}
 
 	// TODO: protect when array is unsorted
@@ -45,8 +45,8 @@ private:
 		return "Binary Search";
 	}
 
-	using Base<T,N>::arr;
-	using Base<T,N>::size;
+	using Base<T>::arr;
+	using Base<T>::size;
 };
 
 

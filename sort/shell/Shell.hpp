@@ -8,17 +8,17 @@ namespace subox {
 namespace algorithms {
 namespace sorting {
 
-template< typename T, std::size_t N >
-struct Shell : public Base<T,N> {
-	Shell( bool const reverse = false )
-		: Base<T,N>(reverse){}
+template< typename T >
+struct Shell : public Base<T> {
+	Shell( std::size_t capacity = 0, bool const reverse = false )
+		: Base<T>(capacity, reverse){}
 
-	Shell( T max, T min )
-		: Base<T,N>(max, min) {
+	Shell( std::size_t capacity, T max, T min )
+		: Base<T>(capacity, max, min) {
 	}
 
-	Shell( typename Base<T,N>::MyArr const& newArr )
-		: Base<T,N>(newArr ) {
+	Shell( typename Base<T>::MyArr const& newArr )
+		: Base<T>(newArr ) {
 	}	
 
 	bool calc(T const=0) override {
@@ -56,8 +56,8 @@ private:
 		return "Shell Sort";
 	}
 
-	using Base<T,N>::arr;
-	using Base<T,N>::size;
+	using Base<T>::arr;
+	using Base<T>::size;
 };
 
 

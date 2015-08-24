@@ -8,17 +8,17 @@ namespace subox {
 namespace algorithms {
 namespace sorting {
 
-template< typename T, std::size_t N >
-struct Selection : public Base<T,N> {
-	Selection( bool const reverse = false )
-		: Base<T,N>(reverse){}
+template< typename T >
+struct Selection : public Base<T> {
+	Selection( std::size_t capacity, bool const reverse = false )
+		: Base<T>(capacity, reverse){}
 
-	Selection( T max, T min )
-		: Base<T,N>(max, min) {
+	Selection( std::size_t capacity, T max, T min )
+		: Base<T>(capacity, max, min) {
 	}
 
-	Selection( typename Base<T,N>::MyArr const& newArr )
-		: Base<T,N>( newArr ) {
+	Selection( typename Base<T>::MyArr const& newArr )
+		: Base<T>( newArr ) {
 	}	
 
 	bool calc(T const=0) override {
