@@ -24,6 +24,8 @@ struct Config {
 	std::vector< T > searchNumbers;
 	Print shouldPrint = Print::Disable;
 	ArraySort arraySort = ArraySort::Random;
+	T valuesMin = 0;
+	T valuesMax = 1000;
 	unsigned executions = 1;
 	bool sameArrayValues = true;
 	unsigned short maxThreads = 1;

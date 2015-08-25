@@ -22,11 +22,20 @@ struct Insertion : public Base<T> {
 	}	
 
 	bool calc(T const=0) override {
+		sort( arr, 0, arr.size() - 1 );
+
+		return true;
+	}
+
+	static void sort(
+			typename Base<T>::MyArr& _arr
+			,std::size_t const low
+			,std::size_t const high ) {
 		bool foundPlace = false;
-		for (std::size_t i = 0; i < size(); ++i ) {
+		for (std::size_t i = low; i <= (high - low); ++i ) {
 			for (std::size_t j = i; j > 0 && (false == foundPlace); --j) {
-				if (arr[j] < arr[j - 1]) {
-					std::swap( arr[j], arr[j - 1] );
+				if (_arr[j] < _arr[j - 1]) {
+					std::swap( _arr[j], _arr[j - 1] );
 				} else {
 					foundPlace = true;
 				}
@@ -34,8 +43,8 @@ struct Insertion : public Base<T> {
 			foundPlace = false;
 		}
 
-		return true;
 	}
+				
 
 private:
 	constexpr std::string name() const override {

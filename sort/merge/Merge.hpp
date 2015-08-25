@@ -2,6 +2,7 @@
 #define __ALGORITHMS_SORTING_MERGE_HPP__
 
 #include "helpers/Base.hpp"
+#include "sort/insertion/Insertion.hpp"
 #include <algorithm>
 
 namespace subox {
@@ -32,7 +33,9 @@ struct Merge : public Base<T> {
 
 private:
 	void sort( std::size_t const _low, std::size_t const high ) {
-		if (_low < high) {
+		if (high <= _low + Cutoff - 1) {
+			Insertion<T>::sort( this->arr, _low, high);
+		} else {
 			std::size_t const low = _low
 					, middle = _low + ((high - _low) / 2) ;
 
@@ -71,6 +74,7 @@ private:
 		return "Merge Sort";
 	}
 
+	static constexpr unsigned short Cutoff = 7; // Up to 7 items insertion sort is most effective
 	typename Base<T>::MyArr auxiliaryArr;
 };
 

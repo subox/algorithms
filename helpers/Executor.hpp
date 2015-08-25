@@ -84,7 +84,7 @@ protected:
 		BaseTempl* item = nullptr;
 		switch ( config.arraySort ) {
 			case ArraySort::Random:
-				item = new SORT(Config<T,S>::SearchArraySize, 1000,0);
+				item = new SORT(Config<T,S>::SearchArraySize, config.valuesMax, config.valuesMin);
 				break;
 			case ArraySort::Ascend:
 				item = new SORT(Config<T,S>::SearchArraySize);
@@ -93,7 +93,7 @@ protected:
 				item = new SORT(Config<T,S>::SearchArraySize, true);
 				break;
 			default:
-				item = new SORT(Config<T,S>::SearchArraySize, 1000,0);
+				item = new SORT(Config<T,S>::SearchArraySize, config.valuesMax, config.valuesMin);
 				break;
 		}
 
