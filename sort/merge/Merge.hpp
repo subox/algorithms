@@ -4,7 +4,6 @@
 #include "helpers/Base.hpp"
 #include "sort/insertion/Insertion.hpp"
 #include <algorithm>
-#define NDEBUG
 #include <cassert>
 
 namespace subox {
