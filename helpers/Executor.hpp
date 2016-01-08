@@ -6,7 +6,8 @@
 #include "sort/selection/Selection.hpp"
 #include "sort/insertion/Insertion.hpp"
 #include "sort/shell/Shell.hpp"
-#include "sort/merge/Merge.hpp"
+#include "sort/merge/RecursiveMerge.hpp"
+#include "sort/merge/BottomUpMerge.hpp"
 #include "search/binary/Binary.hpp"
 #include "shuffle/knuth/Knuth.hpp"
 #include <forward_list>
@@ -21,7 +22,8 @@ enum class OperType {
 	,SelectionSort
 	,InsertionSort
 	,ShellSort
-	,MergeSort
+	,RecursiveMergeSort
+	,BottomUpMergeSort
 	,KnuthShuffle
 };
 
@@ -47,8 +49,11 @@ struct Executor {
 			case OperType::ShellSort:
 				item.reset( this->template selectSortOrder<sorting::Shell< T >>() );
 				break;
-			case OperType::MergeSort:
-				item.reset( this->template selectSortOrder<sorting::Merge< T >>() );
+			case OperType::RecursiveMergeSort:
+				item.reset( this->template selectSortOrder<sorting::RecursiveMerge< T >>() );
+				break;
+			case OperType::BottomUpMergeSort:
+				item.reset( this->template selectSortOrder<sorting::BottomUpMerge< T >>() );
 				break;
 			case OperType::KnuthShuffle:
 				item.reset( this->template selectSortOrder<shuffle::Knuth< T >>() );

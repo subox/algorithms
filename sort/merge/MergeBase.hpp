@@ -1,5 +1,5 @@
-#ifndef __ALGORITHMS_SORTING_MERGE_HPP__
-#define __ALGORITHMS_SORTING_MERGE_HPP__
+#ifndef __ALGORITHMS_SORTING_MERGE_BASE_HPP__
+#define __ALGORITHMS_SORTING_MERGE_BASE_HPP__
 
 #include "helpers/Base.hpp"
 #include "sort/insertion/Insertion.hpp"
@@ -11,44 +11,30 @@ namespace algorithms {
 namespace sorting {
 
 template< typename T >
-struct Merge : public Base<T> {
-	Merge( std::size_t capacity = 0, bool const reverse = false )
+struct MergeBase : public Base<T> {
+	MergeBase( std::size_t capacity = 0, bool const reverse = false )
 		: Base<T>(capacity, reverse){}
 
-	Merge( std::size_t capacity, T max, T min )
+	MergeBase( std::size_t capacity, T max, T min )
 		: Base<T>(capacity, max, min) {
 	}
 
-	Merge( typename Base<T>::MyArr const& newArr )
+	MergeBase( typename Base<T>::MyArr const& newArr )
 		: Base<T>( newArr ) {
 	}	
 
 	bool calc(T const=0) override {
 		auxiliaryArr = this->arr;	
-		std::size_t const low = 0
-					,high = this->size() - 1;
 
-		sort( low, high );
+		bool result = startSorting();
 
 		assert( true == std::is_sorted(this->arr.begin(), this->arr.end()) );
 
-		return true;
+		return result;
 	}
 
-private:
-	void sort( std::size_t const _low, std::size_t const high ) {
-		// TODO: analyze why swapping 2 vector items takes so much time
-		if (high <= _low){// + Cutoff - 1) {
-			//Insertion<T>::sort( this->arr, _low, high);
-		} else {
-			std::size_t const low = _low
-					, middle = _low + ((high - _low) / 2) ;
-
-			sort( low, middle );
-			sort( middle + 1, high);
-			merge( low, middle, high);
-		}
-	}
+protected:
+	virtual bool startSorting() = 0;
 
 	void merge(
 			std::size_t const low
@@ -75,11 +61,8 @@ private:
 		}
 	}
 
-	constexpr std::string name() const override {
-		return "Merge Sort";
-	}
+	virtual constexpr std::string name() const = 0;
 
-	static constexpr unsigned short Cutoff = 7; // Up to 7 items insertion sort is most effective
 	typename Base<T>::MyArr auxiliaryArr;
 };
 
@@ -88,4 +71,4 @@ private:
 }
 }
 
-#endif // __ALGORITHMS_SORTING_MERGE_HPP__
+#endif // __ALGORITHMS_SORTING_MERGE_BASE_HPP__

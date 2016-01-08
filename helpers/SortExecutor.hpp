@@ -5,7 +5,8 @@
 #include "sort/insertion/Insertion.hpp"
 #include "sort/selection/Selection.hpp"
 #include "sort/shell/Shell.hpp"
-#include "sort/merge/Merge.hpp"
+#include "sort/merge/RecursiveMerge.hpp"
+#include "sort/merge/BottomUpMerge.hpp"
 #include "Config.hpp"
 
 namespace subox {
@@ -28,8 +29,11 @@ struct SortExecutor : public Executor<T,S> {
 			case OperType::ShellSort:
 				item.reset( this->template selectSortOrder<sorting::Shell< T >>() );
 				break;
-			case OperType::MergeSort:
-				item.reset( this->template selectSortOrder<sorting::Merge< T >>() );
+			case OperType::RecursiveMergeSort:
+				item.reset( this->template selectSortOrder<sorting::RecursiveMerge< T >>() );
+				break;
+			case OperType::BottomUpMergeSort:
+				item.reset( this->template selectSortOrder<sorting::BottomUpMerge< T >>() );
 				break;
 			default:
 				return false;

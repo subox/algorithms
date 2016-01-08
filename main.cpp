@@ -24,7 +24,8 @@ int main() {
 	sortExec.push( OperType::SelectionSort );
 	sortExec.push( OperType::InsertionSort );
 	sortExec.push( OperType::ShellSort );
-	sortExec.push( OperType::MergeSort );
+	sortExec.push( OperType::RecursiveMergeSort );
+	sortExec.push( OperType::BottomUpMergeSort );
 	sortExec.execute();
 	}
 	{
