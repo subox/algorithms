@@ -7,6 +7,7 @@
 #include "sort/shell/Shell.hpp"
 #include "sort/merge/RecursiveMerge.hpp"
 #include "sort/merge/BottomUpMerge.hpp"
+#include "sort/quick/Quick.hpp"
 #include "Config.hpp"
 
 namespace subox {
@@ -34,6 +35,9 @@ struct SortExecutor : public Executor<T,S> {
 				break;
 			case OperType::BottomUpMergeSort:
 				item.reset( this->template selectSortOrder<sorting::BottomUpMerge< T >>() );
+				break;
+			case OperType::QuickSort:
+				item.reset( this->template selectSortOrder<sorting::Quick< T >>() );
 				break;
 			default:
 				return false;

@@ -19,6 +19,7 @@ int main() {
 	constexpr static std::size_t SortArrSize = 20000;
 	Config<unsigned long, SortArrSize> sortConfig;
 //	sortConfig.shouldPrint = Print::Both;
+//	sortConfig.valuesMax = 10;
 	sortConfig.arraySort = ArraySort::Random;
 	SortExecutor<unsigned long, SortArrSize> sortExec(sortConfig);
 	sortExec.push( OperType::SelectionSort );
@@ -26,6 +27,7 @@ int main() {
 	sortExec.push( OperType::ShellSort );
 	sortExec.push( OperType::RecursiveMergeSort );
 	sortExec.push( OperType::BottomUpMergeSort );
+	sortExec.push( OperType::QuickSort );
 	sortExec.execute();
 	}
 	{
