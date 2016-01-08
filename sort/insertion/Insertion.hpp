@@ -2,6 +2,7 @@
 #define __ALGORITHMS_SORTING_INSERTION_HPP__ 
 
 #include "helpers/Base.hpp"
+#include "helpers/helpers.hpp"
 #include <algorithm>
 #include <cassert>
 
@@ -34,10 +35,11 @@ struct Insertion : public Base<T> {
 			typename Base<T>::MyArr& _arr
 			,std::size_t const low
 			,std::size_t const high ) {
+		using subox::algorithms::helpers::swapValues;
 		for (std::size_t i = low; i <= high; ++i ) {
 			for (std::size_t j = i; j > 0; --j) {
 				if (_arr[j] < _arr[j - 1]) {
-					std::swap( _arr[j], _arr[j - 1] );
+					swapValues( _arr[j], _arr[j - 1] );
 				} else {
 					break;
 				}

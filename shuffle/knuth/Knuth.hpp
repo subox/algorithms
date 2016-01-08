@@ -2,6 +2,7 @@
 #define __ALGORITHMS_SHUFFLE_KNUTH_HPP__
 
 #include "helpers/Base.hpp"
+#include "helpers/helpers.hpp"
 #include <algorithm>
 #include <random>
 
@@ -23,12 +24,13 @@ struct Knuth : public Base<T> {
 	}	
 
 	bool calc(T const=0) override {
+		using subox::algorithms::helpers::swapValues;
 		std::random_device rd;
 		std::mt19937 mt(rd());
 
 		for (std::size_t i = 0; i < size(); ++i) {
 			std::uniform_int_distribution< T > dist(0, i);
-			std::swap( arr[i], arr[dist(mt)] );
+			swapValues( arr[i], arr[dist(mt)] );
 		}
 
 		return true;

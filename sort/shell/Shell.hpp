@@ -2,6 +2,7 @@
 #define __ALGORITHMS_SORTING_SHELL_HPP__ 
 
 #include "helpers/Base.hpp"
+#include "helpers/helpers.hpp"
 #include <algorithm>
 #include <cassert>
 
@@ -23,6 +24,7 @@ struct Shell : public Base<T> {
 	}	
 
 	bool calc(T const=0) override {
+		using subox::algorithms::helpers::swapValues;
 		std::size_t h = getHmax();
 
 		bool foundPlace = false;
@@ -30,7 +32,7 @@ struct Shell : public Base<T> {
 			for (std::size_t i = h; i < size(); ++i ) {
 				for (std::size_t j = i; j >= h && (false == foundPlace); j -= h) {
 					if (arr[j] < arr[j - h]) {
-						std::swap( arr[j], arr[j - h] );
+						swapValues( arr[j], arr[j - h] );
 					} else {
 						foundPlace = true;
 					}

@@ -2,6 +2,7 @@
 #define __ALGORITHMS_SORTING_SELECTION_HPP__
 
 #include "helpers/Base.hpp"
+#include "helpers/helpers.hpp"
 #include <algorithm>
 #include <cassert>
 
@@ -41,8 +42,9 @@ struct Selection : public Base<T> {
 
 private:
 	void swapIfDifferent( std::size_t const i, std::size_t const min ) {
+		using subox::algorithms::helpers::swapValues;
 		if (min != i) {
-			std::swap( this->arr[i], this->arr[min] );
+			swapValues( this->arr[i], this->arr[min] );
 		}
 	}
 
