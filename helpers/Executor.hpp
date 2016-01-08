@@ -116,6 +116,7 @@ private:
 			,std::unique_ptr<BaseTempl>& item ) {
 		if (isDisabled == p
 			||isDisabled == Print::Both) {
+			std::cout << "print:" << std::endl;
 			item->print(); 
 		}
 	}

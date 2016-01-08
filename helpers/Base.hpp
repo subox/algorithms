@@ -17,12 +17,12 @@ struct Base {
 		arr.reserve( capacity );
 		if (false == reverse) {
 			for (std::size_t i=0; i < capacity; ++i) {
-				arr.push_back(i);
+				arr.emplace_back(i);
 			}
 		} else {
 			// TODO: Check it
 			for (std::size_t i=0; i < capacity; ++i) {
-				arr.push_back(i);
+				arr.emplace_back(i);
 			}
 		}
 	}

@@ -3,6 +3,7 @@
 
 #include "helpers/Base.hpp"
 #include <algorithm>
+#include <cassert>
 
 namespace subox {
 namespace algorithms {
@@ -38,6 +39,8 @@ struct Shell : public Base<T> {
 			}
 			h /= 3;
 		}
+
+		assert( true == std::is_sorted(this->arr.begin(), this->arr.end()) );
 
 		return true;
 	}

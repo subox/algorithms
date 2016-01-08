@@ -4,6 +4,8 @@
 #include "helpers/Base.hpp"
 #include "sort/insertion/Insertion.hpp"
 #include <algorithm>
+#define NDEBUG
+#include <cassert>
 
 namespace subox {
 namespace algorithms {
@@ -26,15 +28,19 @@ struct Merge : public Base<T> {
 		auxiliaryArr = this->arr;	
 		std::size_t const low = 0
 					,high = this->size() - 1;
+
 		sort( low, high );
+
+		assert( true == std::is_sorted(this->arr.begin(), this->arr.end()) );
 
 		return true;
 	}
 
 private:
 	void sort( std::size_t const _low, std::size_t const high ) {
-		if (high <= _low + Cutoff - 1) {
-			Insertion<T>::sort( this->arr, _low, high);
+		// TODO: analyze why swapping 2 vector items takes so much time
+		if (high <= _low){// + Cutoff - 1) {
+			//Insertion<T>::sort( this->arr, _low, high);
 		} else {
 			std::size_t const low = _low
 					, middle = _low + ((high - _low) / 2) ;
