@@ -5,6 +5,7 @@
 #include <vector>
 #include <iostream>
 #include <string>
+#include <functional>
 
 namespace subox {
 namespace algorithms {
@@ -17,23 +18,32 @@ struct Base {
 		arr.reserve( capacity );
 		if (false == reverse) {
 			for (std::size_t i = 0; i < capacity; ++i) {
-				arr.emplace_back(i);
+				arrayPush(i);
 			}
 		} else {
 			for (std::size_t i = capacity; i > 0; --i) {
-				arr.emplace_back(i - 1);
+				arrayPush(i - 1);
 			}
 		}
 	}
 
 	Base( std::size_t const capacity, T max, T min ) {
 		arr.reserve( capacity );
-		helper::GenerateNumbers< T, typename Base< T >::MyArr >::generate( arr, capacity, min, max );
+		helper::GenerateNumbers< T >::generate(
+										capacity
+										,min
+										,max
+										,std::bind(
+												&Base::arrayPush
+												,this
+												,std::placeholders::_1 ));
 	}
 
 	Base( MyArr const& newArr ) {
 		 arr = newArr;
 	}
+
+	Base() = default;
 
 	virtual ~Base(){}
 
@@ -54,6 +64,10 @@ struct Base {
 	}
 
 protected:
+	virtual void arrayPush( T const& item ) {
+		arr.emplace_back( item );
+	}
+
 	constexpr std::size_t size() const {
 		return arr.size();
 	}

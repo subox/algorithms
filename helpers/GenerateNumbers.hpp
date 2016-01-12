@@ -2,21 +2,25 @@
 #define __ALGORITHMS_HELPER_RANDOM_HPP__
 
 #include <random>
-#include <iostream>
+#include <functional>
 
 namespace subox {
 namespace algorithms {
 namespace helper {
 
-template< typename T, typename ARR >
+template< typename T >
 struct GenerateNumbers {
-	static void generate( ARR& arr, std::size_t const capacity, T const min, T const max ) {
+	static void generate(
+			std::size_t const capacity
+			,T const min
+			,T const max
+			,std::function<void(T const&)> arrayPush ) {
 		std::random_device rd;
 		std::mt19937 mt(rd());
 		std::uniform_int_distribution< T > dist(min, max);
 
 		for (std::size_t i=0; i < capacity; ++i) {
-			arr.push_back(dist(mt));
+			arrayPush(dist(mt));
 		}
 
 	}
