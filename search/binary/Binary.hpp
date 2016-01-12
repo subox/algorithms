@@ -2,6 +2,7 @@
 #define __ALGORITHMS_SEARCH_BINARY_HPP__
 
 #include "helpers/ArrayBase.hpp"
+#include <cassert>
 
 namespace subox {
 namespace algorithms {
@@ -17,6 +18,8 @@ struct Binary : public ArrayBase<T> {
 
 	// TODO: protect when array is unsorted
 	bool calc( T const key ) override {
+		assert( true == std::is_sorted(this->arr.begin(), this->arr.end()) );
+
 		unsigned lo = 0,
 				hi = size() - 1,
 				mid = 0;
