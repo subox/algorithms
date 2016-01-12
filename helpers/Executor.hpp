@@ -11,6 +11,7 @@
 #include "sort/quick/Quick.hpp"
 #include "search/binary/Binary.hpp"
 #include "shuffle/knuth/Knuth.hpp"
+#include "tree/binary/Binary.hpp"
 #include <forward_list>
 #include <memory>
 #include <chrono>
@@ -27,6 +28,7 @@ enum class OperType {
 	,BottomUpMergeSort
 	,QuickSort
 	,KnuthShuffle
+	,BinaryTree
 };
 
 template< typename T, std::size_t S >
@@ -62,6 +64,9 @@ struct Executor {
 				break;
 			case OperType::KnuthShuffle:
 				item.reset( new shuffle::Knuth< T > );
+				break;
+			case OperType::BinaryTree:
+				item.reset( new tree::Binary< T > );
 				break;
 			default:
 				return false;

@@ -43,9 +43,6 @@ protected:
 		arr.emplace_back( item );
 	}
 
-	void reserve( std::size_t const capacity ) {
-	}
-
 	constexpr std::size_t size() const {
 		return arr.size();
 	}

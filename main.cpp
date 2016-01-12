@@ -2,6 +2,7 @@
 #include "helpers/Executor.hpp"
 #include <iostream>
 #include <chrono>
+#include "tree/binary/Binary.hpp"
 
 using namespace subox::algorithms;
 
@@ -40,6 +41,16 @@ int main() {
 	exec.execute();
 	}
 	//std::array< unsigned, 10 > array = {1,3,6,8,9,10, 12, 17, 19, 20};
+	{
+	constexpr static std::size_t ArrSize = 10;
+	Config<int, ArrSize> config;
+	config.valuesMax = 10;
+	config.shouldPrint = Print::Both;
+//	config.arraySort = ArraySort::Descend;
+	Executor<int, ArrSize> exec(config);
+	exec.push( OperType::BinaryTree );
+	exec.execute();
+	}
 
 	return 0;
 }
