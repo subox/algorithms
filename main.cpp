@@ -11,15 +11,18 @@ using namespace subox::algorithms;
 
 int main() {
 
-	Config<unsigned long> searchConfig;
-	SearchExecutor<unsigned long> searchExec(searchConfig);
+	{
+	constexpr static std::size_t SortArrSize = 20000;
+	Config<unsigned long, SortArrSize> searchConfig;
+	SearchExecutor<unsigned long, SortArrSize> searchExec(searchConfig);
 	searchExec.push( OperType::BinarySearch );
 	searchExec.execute();
+	}
 	{
 	constexpr static std::size_t SortArrSize = 20000;
 	Config<unsigned long, SortArrSize> sortConfig;
 //	sortConfig.shouldPrint = Print::Both;
-//	sortConfig.valuesMax = 10;
+	sortConfig.valuesMax = 10;
 	sortConfig.arraySort = ArraySort::Random;
 	SortExecutor<unsigned long, SortArrSize> sortExec(sortConfig);
 	sortExec.push( OperType::SelectionSort );

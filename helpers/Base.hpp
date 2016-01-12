@@ -13,21 +13,20 @@ template< typename T >
 struct Base {
 	typedef std::vector< T > MyArr;
 
-	Base( std::size_t capacity = 0, bool const reverse = false ) {
+	Base( std::size_t const capacity = 0, bool const reverse = false ) {
 		arr.reserve( capacity );
 		if (false == reverse) {
-			for (std::size_t i=0; i < capacity; ++i) {
+			for (std::size_t i = 0; i < capacity; ++i) {
 				arr.emplace_back(i);
 			}
 		} else {
-			// TODO: Check it
-			for (std::size_t i=0; i < capacity; ++i) {
-				arr.emplace_back(i);
+			for (std::size_t i = capacity; i > 0; --i) {
+				arr.emplace_back(i - 1);
 			}
 		}
 	}
 
-	Base( std::size_t capacity, T max, T min ) {
+	Base( std::size_t const capacity, T max, T min ) {
 		arr.reserve( capacity );
 		helper::GenerateNumbers< T, typename Base< T >::MyArr >::generate( arr, capacity, min, max );
 	}
