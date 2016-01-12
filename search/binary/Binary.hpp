@@ -1,23 +1,18 @@
 #ifndef __ALGORITHMS_SEARCH_BINARY_HPP__
 #define __ALGORITHMS_SEARCH_BINARY_HPP__
 
-#include "helpers/Base.hpp"
+#include "helpers/ArrayBase.hpp"
 
 namespace subox {
 namespace algorithms {
 namespace search {
 
 template< typename T >
-struct Binary : public Base<T> {
-	Binary( std::size_t capacity = 0, bool const reverse = false )
-		: Base<T>(capacity, reverse){}
+struct Binary : public ArrayBase<T> {
+	Binary() = default;
 
-	Binary( std::size_t capacity, T max, T min )
-		: Base<T>(capacity, max, min) {
-	}
-
-	Binary( typename Base<T>::MyArr const& newArr )
-		: Base<T>(newArr ) {
+	Binary( typename ArrayBase<T>::MyArr const& newArr )
+		: ArrayBase<T>(newArr ) {
 	}
 
 	// TODO: protect when array is unsorted
@@ -45,8 +40,8 @@ private:
 		return "Binary Search";
 	}
 
-	using Base<T>::arr;
-	using Base<T>::size;
+	using ArrayBase<T>::arr;
+	using ArrayBase<T>::size;
 };
 
 

@@ -40,33 +40,34 @@ struct Executor {
 		std::unique_ptr<BaseTempl> item;
 		switch( operType ) {
 			case OperType::BinarySearch:
-				item.reset( new search::Binary< T >(Config<T,S>::SearchArraySize) );
+				item.reset( new search::Binary< T > );
 				break;
 			case OperType::SelectionSort:
-				item.reset( this->template selectSortOrder<sorting::Selection< T >>() );
+				item.reset( new sorting::Selection< T > );
 				break;
 			case OperType::InsertionSort:
-				item.reset( this->template selectSortOrder<sorting::Insertion< T >>() );
+				item.reset( new sorting::Insertion< T > );
 				break;
 			case OperType::ShellSort:
-				item.reset( this->template selectSortOrder<sorting::Shell< T >>() );
+				item.reset( new sorting::Shell< T > );
 				break;
 			case OperType::RecursiveMergeSort:
-				item.reset( this->template selectSortOrder<sorting::RecursiveMerge< T >>() );
+				item.reset( new sorting::RecursiveMerge< T > );
 				break;
 			case OperType::BottomUpMergeSort:
-				item.reset( this->template selectSortOrder<sorting::BottomUpMerge< T >>() );
+				item.reset( new sorting::BottomUpMerge< T > );
 				break;
 			case OperType::QuickSort:
-				item.reset( this->template selectSortOrder<sorting::Quick< T >>() );
+				item.reset( new sorting::Quick< T > );
 				break;
 			case OperType::KnuthShuffle:
-				item.reset( this->template selectSortOrder<shuffle::Knuth< T >>() );
+				item.reset( new shuffle::Knuth< T > );
 				break;
 			default:
 				return false;
 		}
 
+		item = selectSortOrder( std::move(item) );
 		tests.push_front( std::move(item) );
 		return true;
 	}
@@ -89,21 +90,20 @@ protected:
 	Config<T,S> config;
 	std::forward_list<std::unique_ptr<BaseTempl>> tests;
 
-	template< typename SORT >
-	BaseTempl* selectSortOrder() {
-		BaseTempl* item = nullptr;
+	template< typename OPER >
+	std::unique_ptr<OPER> selectSortOrder( std::unique_ptr<OPER> item ) {
 		switch ( config.arraySort ) {
 			case ArraySort::Random:
-				item = new SORT(Config<T,S>::SearchArraySize, config.valuesMax, config.valuesMin);
+				item->generateNumbers( Config<T,S>::SearchArraySize, config.valuesMax, config.valuesMin );
 				break;
 			case ArraySort::Ascend:
-				item = new SORT(Config<T,S>::SearchArraySize);
+				item->generateNumbers( Config<T,S>::SearchArraySize );
 				break;
 			case ArraySort::Descend:
-				item = new SORT(Config<T,S>::SearchArraySize, true);
+				item->generateNumbers( Config<T,S>::SearchArraySize, true );
 				break;
 			default:
-				item = new SORT(Config<T,S>::SearchArraySize, config.valuesMax, config.valuesMin);
+				item->generateNumbers( Config<T,S>::SearchArraySize, config.valuesMax, config.valuesMin );
 				break;
 		}
 

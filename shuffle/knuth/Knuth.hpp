@@ -1,7 +1,7 @@
 #ifndef __ALGORITHMS_SHUFFLE_KNUTH_HPP__
 #define __ALGORITHMS_SHUFFLE_KNUTH_HPP__
 
-#include "helpers/Base.hpp"
+#include "helpers/ArrayBase.hpp"
 #include "helpers/helpers.hpp"
 #include <algorithm>
 #include <random>
@@ -11,16 +11,11 @@ namespace algorithms {
 namespace shuffle {
 
 template< typename T >
-struct Knuth : public Base<T> {
-	Knuth( std::size_t capacity = 0, bool const reverse = false )
-		: Base<T>(capacity, reverse){}
+struct Knuth : public ArrayBase<T> {
+	Knuth() = default;
 
-	Knuth( std::size_t capacity, T max, T min )
-		: Base<T>(capacity, max, min) {
-	}
-
-	Knuth( typename Base<T>::MyArr const& newArr )
-		: Base<T>(newArr ) {
+	Knuth( typename ArrayBase<T>::MyArr const& newArr )
+		: ArrayBase<T>(newArr ) {
 	}	
 
 	bool calc(T const=0) override {
@@ -41,8 +36,8 @@ private:
 		return "Knuth Shuffle";
 	}
 
-	using Base<T>::arr;
-	using Base<T>::size;
+	using ArrayBase<T>::arr;
+	using ArrayBase<T>::size;
 };
 
 

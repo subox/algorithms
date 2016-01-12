@@ -1,8 +1,4 @@
-#include "search/binary/Binary.hpp"
-#include "sort/selection/Selection.hpp"
 #include "helpers/Config.hpp"
-#include "helpers/SearchExecutor.hpp"
-#include "helpers/SortExecutor.hpp"
 #include "helpers/Executor.hpp"
 #include <iostream>
 #include <chrono>
@@ -14,7 +10,8 @@ int main() {
 	{
 	constexpr static std::size_t SortArrSize = 20000;
 	Config<unsigned long, SortArrSize> searchConfig;
-	SearchExecutor<unsigned long, SortArrSize> searchExec(searchConfig);
+	searchConfig.arraySort = ArraySort::Ascend;
+	Executor<unsigned long, SortArrSize> searchExec(searchConfig);
 	searchExec.push( OperType::BinarySearch );
 	searchExec.execute();
 	}
@@ -24,7 +21,7 @@ int main() {
 //	sortConfig.shouldPrint = Print::Both;
 	sortConfig.valuesMax = 10;
 	sortConfig.arraySort = ArraySort::Random;
-	SortExecutor<unsigned long, SortArrSize> sortExec(sortConfig);
+	Executor<unsigned long, SortArrSize> sortExec(sortConfig);
 	sortExec.push( OperType::SelectionSort );
 	sortExec.push( OperType::InsertionSort );
 	sortExec.push( OperType::ShellSort );
@@ -34,7 +31,7 @@ int main() {
 	sortExec.execute();
 	}
 	{
-	constexpr static std::size_t SortArrSize = 100;
+	constexpr static std::size_t SortArrSize = 20000;
 	Config<int, SortArrSize> config;
 //	config.shouldPrint = Print::Both;
 	config.arraySort = ArraySort::Descend;

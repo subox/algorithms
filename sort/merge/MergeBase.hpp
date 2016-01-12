@@ -1,7 +1,7 @@
 #ifndef __ALGORITHMS_SORTING_MERGE_BASE_HPP__
 #define __ALGORITHMS_SORTING_MERGE_BASE_HPP__
 
-#include "helpers/Base.hpp"
+#include "helpers/ArrayBase.hpp"
 #include "sort/insertion/Insertion.hpp"
 #include <algorithm>
 #include <cassert>
@@ -11,16 +11,11 @@ namespace algorithms {
 namespace sorting {
 
 template< typename T >
-struct MergeBase : public Base<T> {
-	MergeBase( std::size_t capacity = 0, bool const reverse = false )
-		: Base<T>(capacity, reverse){}
+struct MergeBase : public ArrayBase<T> {
+	MergeBase() = default;
 
-	MergeBase( std::size_t capacity, T max, T min )
-		: Base<T>(capacity, max, min) {
-	}
-
-	MergeBase( typename Base<T>::MyArr const& newArr )
-		: Base<T>( newArr ) {
+	MergeBase( typename ArrayBase<T>::MyArr const& newArr )
+		: ArrayBase<T>( newArr ) {
 	}	
 
 	bool calc(T const=0) override {
@@ -63,7 +58,7 @@ protected:
 
 	virtual constexpr std::string name() const = 0;
 
-	typename Base<T>::MyArr auxiliaryArr;
+	typename ArrayBase<T>::MyArr auxiliaryArr;
 };
 
 

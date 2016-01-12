@@ -1,7 +1,7 @@
 #ifndef __ALGORITHMS_SORTING_SELECTION_HPP__
 #define __ALGORITHMS_SORTING_SELECTION_HPP__
 
-#include "helpers/Base.hpp"
+#include "helpers/ArrayBase.hpp"
 #include "helpers/helpers.hpp"
 #include <algorithm>
 #include <cassert>
@@ -11,16 +11,11 @@ namespace algorithms {
 namespace sorting {
 
 template< typename T >
-struct Selection : public Base<T> {
-	Selection( std::size_t capacity, bool const reverse = false )
-		: Base<T>(capacity, reverse){}
+struct Selection : public ArrayBase<T> {
+	Selection() = default;
 
-	Selection( std::size_t capacity, T max, T min )
-		: Base<T>(capacity, max, min) {
-	}
-
-	Selection( typename Base<T>::MyArr const& newArr )
-		: Base<T>( newArr ) {
+	Selection( typename ArrayBase<T>::MyArr const& newArr )
+		: ArrayBase<T>( newArr ) {
 	}	
 
 	bool calc(T const=0) override {

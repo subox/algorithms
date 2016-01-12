@@ -1,7 +1,7 @@
 #ifndef __ALGORITHMS_SORTING_QUICK_HPP__
 #define __ALGORITHMS_SORTING_QUICK_HPP__ 
 
-#include "helpers/Base.hpp"
+#include "helpers/ArrayBase.hpp"
 #include "helpers/helpers.hpp"
 #include <algorithm>
 #include <cassert>
@@ -11,16 +11,11 @@ namespace algorithms {
 namespace sorting {
 
 template< typename T >
-struct Quick : public Base<T> {
-	Quick( std::size_t capacity, bool const reverse = false )
-		: Base<T>(capacity, reverse){}
+struct Quick : public ArrayBase<T> {
+	Quick() = default;
 
-	Quick( std::size_t capacity, T max, T min )
-		: Base<T>(capacity, max, min) {
-	}
-
-	Quick( typename Base<T>::MyArr const& newArr )
-		: Base<T>(newArr ) {
+	Quick( typename ArrayBase<T>::MyArr const& newArr )
+		: ArrayBase<T>(newArr ) {
 	}	
 
 	bool calc(T const=0) override {
@@ -72,8 +67,8 @@ private:
 	}
 
 
-	using Base<T>::arr;
-	using Base<T>::size;
+	using ArrayBase<T>::arr;
+	using ArrayBase<T>::size;
 };
 
 

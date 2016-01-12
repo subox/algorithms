@@ -13,14 +13,9 @@ namespace sorting {
 
 template< typename T >
 struct BottomUpMerge : public MergeBase<T> {
-	BottomUpMerge( std::size_t capacity = 0, bool const reverse = false )
-		: MergeBase<T>(capacity, reverse){}
+	BottomUpMerge() = default;
 
-	BottomUpMerge( std::size_t capacity, T max, T min )
-		: MergeBase<T>(capacity, max, min) {
-	}
-
-	BottomUpMerge( typename Base<T>::MyArr const& newArr )
+	BottomUpMerge( typename ArrayBase<T>::MyArr const& newArr )
 		: MergeBase<T>( newArr ) {
 	}	
 

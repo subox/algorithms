@@ -1,7 +1,7 @@
 #ifndef __ALGORITHMS_SORTING_INSERTION_HPP__
 #define __ALGORITHMS_SORTING_INSERTION_HPP__ 
 
-#include "helpers/Base.hpp"
+#include "helpers/ArrayBase.hpp"
 #include "helpers/helpers.hpp"
 #include <algorithm>
 #include <cassert>
@@ -11,16 +11,11 @@ namespace algorithms {
 namespace sorting {
 
 template< typename T >
-struct Insertion : public Base<T> {
-	Insertion( std::size_t capacity, bool const reverse = false )
-		: Base<T>(capacity, reverse){}
+struct Insertion : public ArrayBase<T> {
+	Insertion() = default;
 
-	Insertion( std::size_t capacity, T max, T min )
-		: Base<T>(capacity, max, min) {
-	}
-
-	Insertion( typename Base<T>::MyArr const& newArr )
-		: Base<T>(newArr ) {
+	Insertion( typename ArrayBase<T>::MyArr const& newArr )
+		: ArrayBase<T>(newArr ) {
 	}	
 
 	bool calc(T const=0) override {
@@ -32,7 +27,7 @@ struct Insertion : public Base<T> {
 	}
 
 	static void sort(
-			typename Base<T>::MyArr& _arr
+			typename ArrayBase<T>::MyArr& _arr
 			,std::size_t const low
 			,std::size_t const high ) {
 		using subox::algorithms::helpers::swapValues;
@@ -55,8 +50,8 @@ private:
 	}
 
 
-	using Base<T>::arr;
-	using Base<T>::size;
+	using ArrayBase<T>::arr;
+	using ArrayBase<T>::size;
 };
 
 
