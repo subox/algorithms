@@ -72,7 +72,11 @@ struct Executor {
 				return false;
 		}
 
-		item = selectSortOrder( std::move(item) );
+		if (config.initNumbers.empty()) {
+			item = selectSortOrder( std::move(item) );
+		} else {
+			item->assignNumbers( config.initNumbers );
+		}
 		tests.push_front( std::move(item) );
 		return true;
 	}

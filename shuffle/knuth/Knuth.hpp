@@ -14,10 +14,6 @@ template< typename T >
 struct Knuth : public ArrayBase<T> {
 	Knuth() = default;
 
-	Knuth( typename ArrayBase<T>::MyArr const& newArr )
-		: ArrayBase<T>(newArr ) {
-	}	
-
 	bool calc(T const=0) override {
 		using subox::algorithms::helpers::swapValues;
 		std::random_device rd;

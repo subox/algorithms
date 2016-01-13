@@ -14,10 +14,6 @@ template< typename T >
 struct Selection : public ArrayBase<T> {
 	Selection() = default;
 
-	Selection( typename ArrayBase<T>::MyArr const& newArr )
-		: ArrayBase<T>( newArr ) {
-	}	
-
 	bool calc(T const=0) override {
 		std::size_t min = 0;
 		for (std::size_t i = 0; i < this->size(); ++i) {

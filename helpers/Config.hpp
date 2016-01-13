@@ -1,6 +1,7 @@
 #ifndef __ALGORITHMS_CONFIG_HPP__
 #define __ALGORITHMS_CONFIG_HPP__
 
+#include "helpers/ArrayBase.hpp"
 #include <vector>
 
 namespace subox {
@@ -21,7 +22,7 @@ enum class ArraySort {
 
 template< typename T, std::size_t S = 200000000L >
 struct Config {
-	std::vector< T > searchNumbers;
+	typename Base<T>::MyArr initNumbers;
 	Print shouldPrint = Print::Disable;
 	ArraySort arraySort = ArraySort::Random;
 	T valuesMin = 0;

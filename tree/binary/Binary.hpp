@@ -29,7 +29,22 @@ struct Binary : public Base<VALUE> {
 
 	Binary() = default;
 
+	void assignNumbers( typename ArrayBase<KEY>::MyArr const& initNumbers ) override {
+		for (KEY key : initNumbers) {
+			push( key );
+		}
+	}
+
 	bool calc(VALUE const=0) override {
+		KEY key = 0;
+		VALUE val = 0;
+		if (getMinimum(key,val)) {
+			std::cout << "min: " << key << ":" << val << std::endl;
+		}
+
+		if (getMaximum(key,val)) {
+			std::cout << "max: " << key << ":" << val << std::endl;
+		}
 
 		return true;
 	}
@@ -60,6 +75,37 @@ struct Binary : public Base<VALUE> {
 
 		return found;
 	}
+
+	bool getMinimum( KEY& key, VALUE& value ) const {
+		Node<KEY,VALUE>* node = root.get();
+		bool minExists = false;
+		if (nullptr != node) {
+			minExists = true;
+			while (nullptr != node->left) {
+				node = node->left.get();
+			}
+			key = node->key;
+			value = node->value;
+		}
+
+		return minExists;
+	}
+
+	bool getMaximum( KEY& key, VALUE& value ) const {
+		Node<KEY,VALUE>* node = root.get();
+		bool maxExists = false;
+		if (nullptr != node) {
+			maxExists = true;
+			while (nullptr != node->right) {
+				node = node->right.get();
+			}
+			key = node->key;
+			value = node->value;
+		}
+
+		return maxExists;
+	}
+
 
 private:
 	NodePtr addNode(

@@ -12,10 +12,6 @@ template< typename T >
 struct Binary : public ArrayBase<T> {
 	Binary() = default;
 
-	Binary( typename ArrayBase<T>::MyArr const& newArr )
-		: ArrayBase<T>(newArr ) {
-	}
-
 	// TODO: protect when array is unsorted
 	bool calc( T const key ) override {
 		assert( true == std::is_sorted(this->arr.begin(), this->arr.end()) );

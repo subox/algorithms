@@ -15,10 +15,6 @@ template< typename T >
 struct RecursiveMerge : public MergeBase<T> {
 	RecursiveMerge() = default;
 
-	RecursiveMerge( typename ArrayBase<T>::MyArr const& newArr )
-		: MergeBase<T>( newArr ) {
-	}	
-
 private:
 	bool startSorting() override {
 		std::size_t const low = 0

@@ -14,10 +14,6 @@ template< typename T >
 struct Shell : public ArrayBase<T> {
 	Shell() = default;
 
-	Shell( typename ArrayBase<T>::MyArr const& newArr )
-		: ArrayBase<T>(newArr ) {
-	}	
-
 	bool calc(T const=0) override {
 		using subox::algorithms::helpers::swapValues;
 		std::size_t h = getHmax();

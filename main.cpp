@@ -40,12 +40,11 @@ int main() {
 	exec.push( OperType::KnuthShuffle );
 	exec.execute();
 	}
-	//std::array< unsigned, 10 > array = {1,3,6,8,9,10, 12, 17, 19, 20};
 	{
 	constexpr static std::size_t ArrSize = 10;
 	Config<int, ArrSize> config;
-	config.valuesMax = 10;
-	config.shouldPrint = Print::Both;
+//	config.shouldPrint = Print::Both;
+	config.initNumbers = { 2, 3, 7, 10, 8, 2, 5, 6, 4 };
 //	config.arraySort = ArraySort::Descend;
 	Executor<int, ArrSize> exec(config);
 	exec.push( OperType::BinaryTree );

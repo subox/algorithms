@@ -11,13 +11,7 @@ namespace algorithms {
 
 template< typename T >
 struct ArrayBase : public Base<T> {
-	typedef std::vector< T > MyArr;
-
 	ArrayBase() = default;
-
-	ArrayBase( MyArr const& newArr ) {
-		 arr = newArr;
-	}
 
 	void generateNumbers( std::size_t const capacity = 0, bool const reverse = false ) override {
 		arr.reserve( capacity );
@@ -27,6 +21,10 @@ struct ArrayBase : public Base<T> {
 	void generateNumbers( std::size_t const capacity, T const max, T const min ) override {
 		arr.reserve( capacity );
 		Base<T>::generateNumbers( capacity, max, min );
+	}
+
+	virtual void assignNumbers( typename Base<T>::MyArr const& initNumbers ) {
+		arr = initNumbers;
 	}
 
 	virtual ~ArrayBase(){}
@@ -47,7 +45,7 @@ protected:
 		return arr.size();
 	}
 
-	MyArr arr;
+	typename Base<T>::MyArr arr;
 };
 
 }

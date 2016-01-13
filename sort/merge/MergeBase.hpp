@@ -14,10 +14,6 @@ template< typename T >
 struct MergeBase : public ArrayBase<T> {
 	MergeBase() = default;
 
-	MergeBase( typename ArrayBase<T>::MyArr const& newArr )
-		: ArrayBase<T>( newArr ) {
-	}	
-
 	bool calc(T const=0) override {
 		auxiliaryArr = this->arr;	
 

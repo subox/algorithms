@@ -14,10 +14,6 @@ template< typename T >
 struct Quick : public ArrayBase<T> {
 	Quick() = default;
 
-	Quick( typename ArrayBase<T>::MyArr const& newArr )
-		: ArrayBase<T>(newArr ) {
-	}	
-
 	bool calc(T const=0) override {
 		std::random_shuffle(this->arr.begin(), this->arr.end());
 		sort( 0, arr.size() - 1 );

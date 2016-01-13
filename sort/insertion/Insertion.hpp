@@ -14,10 +14,6 @@ template< typename T >
 struct Insertion : public ArrayBase<T> {
 	Insertion() = default;
 
-	Insertion( typename ArrayBase<T>::MyArr const& newArr )
-		: ArrayBase<T>(newArr ) {
-	}	
-
 	bool calc(T const=0) override {
 		sort( arr, 0, arr.size() - 1 );
 

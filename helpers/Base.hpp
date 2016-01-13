@@ -12,6 +12,8 @@ namespace algorithms {
 
 template< typename T >
 struct Base {
+	typedef std::vector< T > MyArr;
+
 	Base() = default;
 
 	virtual ~Base(){}
@@ -38,6 +40,8 @@ struct Base {
 												,this
 												,std::placeholders::_1 ));
 	}
+
+	virtual void assignNumbers( typename Base<T>::MyArr const& initNumbers ) = 0;
 
 	virtual void print() const = 0;
 

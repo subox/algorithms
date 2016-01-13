@@ -15,10 +15,6 @@ template< typename T >
 struct BottomUpMerge : public MergeBase<T> {
 	BottomUpMerge() = default;
 
-	BottomUpMerge( typename ArrayBase<T>::MyArr const& newArr )
-		: MergeBase<T>( newArr ) {
-	}	
-
 private:
 	bool startSorting() override {
 		sort();
