@@ -3,11 +3,17 @@
 #include <iostream>
 #include <chrono>
 #include "tree/binary/Binary.hpp"
+#include "graphs/Graph.hpp"
 
 using namespace subox::algorithms;
 
 int main() {
 
+	{
+		graphs::Graph<int> g(10);
+		g.addEdge( 8, 2 );
+		g.print();
+	}
 	{
 	constexpr static std::size_t SortArrSize = 20000;
 	Config<unsigned long, SortArrSize> searchConfig;
