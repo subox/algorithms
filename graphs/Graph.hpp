@@ -29,21 +29,22 @@ struct Graph : public Base<TObject> {
 	}
 
 	void generateNumbers( std::size_t const capacity = 0, bool const = false ) override {
-		adjList.reserve( capacity );
-		adjList.clear();
-		for (std::size_t i = 0; i < capacity; ++i) {
-			adjList.emplace_back( typename Base<TObject>::MyArr() );
+		if (capacity) {
+			adjList.clear();
+			increaseAdjList( capacity );
 		}
 	}
 
-	bool addEdge( TObject const& v1, TObject const& v2 ) {
-		if (adjList.size() > v1 and adjList.size() > v2 ) {
-			adjList[ v1 ].emplace_back( v2 );
-			adjList[ v2 ].emplace_back( v1 );
-			return true;
+	void addEdge( TObject const& v1, TObject const& v2 ) {
+		if (adjList.size() <= v1){
+			increaseAdjList( v1 );
 		}
 
-		return false;
+		if (adjList.size() <= v2 ) {
+			increaseAdjList( v2 );
+		}
+		adjList[ v1 ].emplace_back( v2 );
+		adjList[ v2 ].emplace_back( v1 );
 	}
 
 	EdgeList const& getEdges( TObject const& vertex ) const {
@@ -60,6 +61,10 @@ struct Graph : public Base<TObject> {
 
 	EdgeList const& operator[]( TObject const& item ) const {
 		return getEdges( item );
+	}
+
+	typename AdjacList::size_type size() const {
+		return adjList.size();
 	}
 
 	void print() const override {
@@ -82,6 +87,13 @@ struct Graph : public Base<TObject> {
 	}
 
 private:
+	void increaseAdjList( TObject const newSize ) {
+		adjList.reserve( newSize + 1 );
+		for (std::size_t i = adjList.size(); i < newSize; ++i) {
+			adjList.emplace_back( typename Base<TObject>::MyArr() );
+		}
+	}
+
 	void assignNumbers( EdgeList const& /*initNumbers */ ) override {
 	}
 
