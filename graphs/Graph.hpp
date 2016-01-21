@@ -11,7 +11,7 @@ namespace subox {
 namespace algorithms {
 namespace graphs {
 
-template< typename TObject, template< typename...> class TContainer = std::vector >
+template< typename TObject = unsigned, template< typename...> class TContainer = std::vector >
 struct Graph : public Base<TObject> {
 	typedef typename Base<TObject>::MyArr EdgeList;
 	typedef TContainer<EdgeList> AdjacList;
