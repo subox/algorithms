@@ -13,8 +13,12 @@ namespace graphs {
 
 template< typename TObject, template< typename...> class TContainer = std::vector >
 struct Graph : public Base<TObject> {
-	typedef TContainer<typename Base<TObject>::MyArr> AdjacList;
-	Graph( std::size_t const vertexSize = 0 ) {
+	typedef typename Base<TObject>::MyArr EdgeList;
+	typedef TContainer<EdgeList> AdjacList;
+	typedef typename AdjacList::iterator iterator;
+	typedef typename AdjacList::const_iterator const_iterator;
+
+	Graph( typename AdjacList::size_type const vertexSize = 0 ) {
 		generateNumbers(vertexSize);
 	}
 
@@ -42,8 +46,24 @@ struct Graph : public Base<TObject> {
 		return false;
 	}
 
+	EdgeList const& getEdges( TObject const& vertex ) const {
+		return adjList[vertex];
+	}
+
+	const_iterator begin() const {
+		return adjList.cbegin();
+	}
+
+	const_iterator end() const {
+		return adjList.cend();
+	}
+
+	EdgeList const& operator[]( TObject const& item ) const {
+		return getEdges( item );
+	}
+
 	void print() const override {
-		for ( std::size_t v = 0; v < adjList.size(); ++v ) {
+		for (typename AdjacList::size_type v = 0; v < adjList.size(); ++v ) {
 			for( TObject const& item : adjList[v] ) {
 				std::cout << v << " --- " << item << std::endl;
 			}
@@ -52,6 +72,7 @@ struct Graph : public Base<TObject> {
 	 };
 
 	bool calc(TObject const=1) {
+		//todo
 		std::cerr << "Error: Not a sort type" << std::endl;
 		return false;
 	}
@@ -61,7 +82,7 @@ struct Graph : public Base<TObject> {
 	}
 
 private:
-	void assignNumbers( typename Base<TObject>::MyArr const& /*initNumbers */ ) override {
+	void assignNumbers( EdgeList const& /*initNumbers */ ) override {
 	}
 
 	inline void push( TObject const& item ) {
